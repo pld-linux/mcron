@@ -13,16 +13,17 @@ Source2:        cron.logrotate
 Source3:        cron.sysconfig
 Source4:        %{name}.crontab
 URL:		http://www.gnu.org/software/mcron/
+BuildRequires:	guile-devel
+BuildRequires:	sed >= 4.0
+BuildRequires:	texinfo
 PreReq:		rc-scripts
 Requires:	/bin/run-parts
-BuildRequires:	guile-devel
-BuildRequires:	texinfo
-Provides:	crontabs
 Provides:	crondaemon
-BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
+Provides:	crontabs
 Obsoletes:	crondaemon
 Obsoletes:	vixie-cron
 Obsoletes:	crontabs
+BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
 The GNU package mcron (Mellor's cron) is a 100% compatible replacement
@@ -30,8 +31,15 @@ for Vixie cron. It is written in pure Guile, and allows configuration
 files to be written in scheme (as well as Vixie's original format) for
 infinite flexibility in specifying when jobs should be run.
 
+%description -l pl
+Pakiet GNU mcron (Mellor's cron) jest w 100% kompatybilnym
+zamiennikiem Vixie crona. Jest napisany w czystym Guile i pozwala na
+pisanie plików konfiguracyjnych w scheme (a tak¿e w oryginalnym
+formacie Vixie) dla nieskoñczonej elastyczno¶ci w podawaniu zadañ do
+uruchomienia.
+
 %prep
-%setup  -q
+%setup -q
 sed -i -e 's#/etc/crontab#/etc/cron.d/system#g' *
 
 %build
@@ -46,8 +54,8 @@ sed -i -e 's#/etc/crontab#/etc/cron.d/system#g' *
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT/var/{log,spool/cron} \
 	$RPM_BUILD_ROOT{%{_bindir},%{_sbindir},%{_infodir}} \
-        $RPM_BUILD_ROOT/etc/{rc.d/init.d,logrotate.d,sysconfig} \
-        $RPM_BUILD_ROOT%{_sysconfdir}/{cron,cron.{d,hourly,daily,weekly,monthly}}
+	$RPM_BUILD_ROOT/etc/{rc.d/init.d,logrotate.d,sysconfig} \
+	$RPM_BUILD_ROOT%{_sysconfdir}/{cron,cron.{d,hourly,daily,weekly,monthly}}
 
 install %{SOURCE1} $RPM_BUILD_ROOT/etc/rc.d/init.d/crond
 install %{SOURCE2} $RPM_BUILD_ROOT/etc/logrotate.d/cron
@@ -70,6 +78,9 @@ cat > $RPM_BUILD_ROOT%{_sysconfdir}/cron/cron.deny << EOF2
 # cron.deny    This file describes the names of the users which are
 #               NOT allowed to use the local cron daemon
 EOF2
+
+%clean
+rm -rf $RPM_BUILD_ROOT
 
 %pre
 if [ -n "`/usr/bin/getgid crontab`" ]; then
@@ -109,10 +120,6 @@ if [ "$1" = "0" ]; then
         /usr/sbin/groupdel crontab
 fi
 [ ! -x /usr/sbin/fix-info-dir ] || /usr/sbin/fix-info-dir -c %{_infodir} >/dev/null 2>&1
-
-%clean
-rm -rf $RPM_BUILD_ROOT
-
 
 %files
 %defattr(644,root,root,755)
