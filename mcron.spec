@@ -14,6 +14,7 @@ Source3:	cron.sysconfig
 Source4:	%{name}.crontab
 URL:		http://www.gnu.org/software/mcron/
 BuildRequires:	guile-devel
+BuildRequires:	rpmbuild(macros) >= 1.159
 BuildRequires:	sed >= 4.0
 BuildRequires:	texinfo
 PreReq:		rc-scripts
