@@ -8,10 +8,10 @@ License:	GPL
 Group:		Daemons
 Source0:	ftp://ftp.gnu.org/pub/gnu/mcron/%{name}-%{version}.tar.gz
 # Source0-md5:	975eba069a1aa2fdaef4029752d78100
-Source1:        %{name}.init
-Source2:        cron.logrotate
-Source3:        cron.sysconfig
-Source4:        %{name}.crontab
+Source1:	%{name}.init
+Source2:	cron.logrotate
+Source3:	cron.sysconfig
+Source4:	%{name}.crontab
 URL:		http://www.gnu.org/software/mcron/
 BuildRequires:	guile-devel
 BuildRequires:	sed >= 4.0
@@ -69,14 +69,14 @@ ln -s ../sbin/mcron $RPM_BUILD_ROOT%{_bindir}/crontab
 install mcron.info $RPM_BUILD_ROOT%{_infodir}/%{name}.info
 
 cat > $RPM_BUILD_ROOT%{_sysconfdir}/cron/cron.allow << EOF
-# cron.allow   This file describes the names of the users which are
-#               allowed to use the local cron daemon
+# cron.allow	This file describes the names of the users which are
+#		allowed to use the local cron daemon
 root
 EOF
 
 cat > $RPM_BUILD_ROOT%{_sysconfdir}/cron/cron.deny << EOF2
-# cron.deny    This file describes the names of the users which are
-#               NOT allowed to use the local cron daemon
+# cron.deny	This file describes the names of the users which are
+#		NOT allowed to use the local cron daemon
 EOF2
 
 %clean
@@ -84,21 +84,21 @@ rm -rf $RPM_BUILD_ROOT
 
 %pre
 if [ -n "`/usr/bin/getgid crontab`" ]; then
-        if [ "`/usr/bin/getgid crontab`" != "117" ]; then
-                echo "Error: group crontab doesn't have gid=117. Correct this before installing cron." 1>&2
-                exit 1
-        fi
+	if [ "`/usr/bin/getgid crontab`" != "117" ]; then
+		echo "Error: group crontab doesn't have gid=117. Correct this before installing cron." 1>&2
+		exit 1
+	fi
 else
-        echo "Adding group crontab GID=117."
-        /usr/sbin/groupadd -g 117 -r -f crontab
+	echo "Adding group crontab GID=117."
+	/usr/sbin/groupadd -g 117 -r -f crontab
 fi
 
 %post
 /sbin/chkconfig --add crond
 if [ -f /var/lock/subsys/crond ]; then
-        /etc/rc.d/init.d/crond restart >&2
+	/etc/rc.d/init.d/crond restart >&2
 else
-        echo "Run \"/etc/rc.d/init.d/crond start\" to start cron daemon."
+	echo "Run \"/etc/rc.d/init.d/crond start\" to start cron daemon."
 fi
 umask 027
 touch /var/log/cron
@@ -108,16 +108,16 @@ chmod 660 /var/log/cron
 
 %preun
 if [ "$1" = "0" ]; then
-        if [ -f /var/lock/subsys/crond ]; then
-                /etc/rc.d/init.d/crond stop >&2
-        fi
-        /sbin/chkconfig --del crond
+	if [ -f /var/lock/subsys/crond ]; then
+		/etc/rc.d/init.d/crond stop >&2
+	fi
+	/sbin/chkconfig --del crond
 fi
 
 %postun
 if [ "$1" = "0" ]; then
-        echo "Removing group crontab."
-        /usr/sbin/groupdel crontab
+	echo "Removing group crontab."
+	/usr/sbin/groupdel crontab
 fi
 [ ! -x /usr/sbin/fix-info-dir ] || /usr/sbin/fix-info-dir -c %{_infodir} >/dev/null 2>&1
 
