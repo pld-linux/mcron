@@ -22,7 +22,6 @@ Requires:	/bin/run-parts
 Provides:	crondaemon
 Provides:	crontabs
 Provides:	group(crontab)
-Obsoletes:	crondaemon
 Obsoletes:	crontabs
 Obsoletes:	fcron
 Obsoletes:	hc-cron
