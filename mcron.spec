@@ -20,9 +20,12 @@ PreReq:		rc-scripts
 Requires:	/bin/run-parts
 Provides:	crondaemon
 Provides:	crontabs
+Provides:	group(crontab)
 Obsoletes:	crondaemon
-Obsoletes:	vixie-cron
 Obsoletes:	crontabs
+Obsoletes:	fcron
+Obsoletes:	hc-cron
+Obsoletes:	vixie-cron
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -116,8 +119,7 @@ fi
 
 %postun
 if [ "$1" = "0" ]; then
-	echo "Removing group crontab."
-	/usr/sbin/groupdel crontab
+	%groupremove crontab
 fi
 [ ! -x /usr/sbin/fix-info-dir ] || /usr/sbin/fix-info-dir -c %{_infodir} >/dev/null 2>&1
 
