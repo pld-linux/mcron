@@ -1,3 +1,5 @@
+# TODO
+# - mcron.{init,crontab} not in CVS
 Summary:	Cron daemon
 Summary(fr):	Démon cron
 Summary(pl):	Demon cron
@@ -8,10 +10,10 @@ License:	GPL
 Group:		Daemons
 Source0:	ftp://ftp.gnu.org/pub/gnu/mcron/%{name}-%{version}.tar.gz
 # Source0-md5:	975eba069a1aa2fdaef4029752d78100
-Source1:	%{name}.init
+#Source1:	%{name}.init
 Source2:	cron.logrotate
 Source3:	cron.sysconfig
-Source4:	%{name}.crontab
+#Source4:	%{name}.crontab
 URL:		http://www.gnu.org/software/mcron/
 BuildRequires:	guile-devel
 BuildRequires:	rpmbuild(macros) >= 1.202
