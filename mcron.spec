@@ -16,15 +16,16 @@ Source3:	cron.sysconfig
 #Source4:	%{name}.crontab
 URL:		http://www.gnu.org/software/mcron/
 BuildRequires:	guile-devel
-BuildRequires:	rpmbuild(macros) >= 1.202
+BuildRequires:	rpmbuild(macros) >= 1.268
 BuildRequires:	sed >= 4.0
 BuildRequires:	texinfo
-PreReq:		rc-scripts
-Requires(pre):	/usr/bin/getgid
-Requires(pre):	/usr/sbin/groupadd
+Requires(post,preun):	/sbin/chkconfig
 Requires(postun):	/usr/sbin/groupdel
 Requires(postun):	/usr/sbin/userdel
+Requires(pre):	/usr/bin/getgid
+Requires(pre):	/usr/sbin/groupadd
 Requires:	/bin/run-parts
+Requires:	rc-scripts
 Provides:	crondaemon
 Provides:	crontabs
 Provides:	group(crontab)
@@ -77,16 +78,16 @@ ln -s ../sbin/mcron $RPM_BUILD_ROOT%{_bindir}/crontab
 
 install mcron.info $RPM_BUILD_ROOT%{_infodir}/%{name}.info
 
-cat > $RPM_BUILD_ROOT%{_sysconfdir}/cron/cron.allow << EOF
+cat > $RPM_BUILD_ROOT%{_sysconfdir}/cron/cron.allow << 'EOF'
 # cron.allow	This file describes the names of the users which are
 #		allowed to use the local cron daemon
 root
 EOF
 
-cat > $RPM_BUILD_ROOT%{_sysconfdir}/cron/cron.deny << EOF2
+cat > $RPM_BUILD_ROOT%{_sysconfdir}/cron/cron.deny << 'EOF'
 # cron.deny	This file describes the names of the users which are
 #		NOT allowed to use the local cron daemon
-EOF2
+EOF
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -96,11 +97,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %post
 /sbin/chkconfig --add crond
-if [ -f /var/lock/subsys/crond ]; then
-	/etc/rc.d/init.d/crond restart >&2
-else
-	echo "Run \"/etc/rc.d/init.d/crond start\" to start cron daemon."
-fi
+%service crond restart "cron daemon"
 umask 027
 touch /var/log/cron
 chgrp crontab /var/log/cron
@@ -109,9 +106,7 @@ chmod 660 /var/log/cron
 
 %preun
 if [ "$1" = "0" ]; then
-	if [ -f /var/lock/subsys/crond ]; then
-		/etc/rc.d/init.d/crond stop >&2
-	fi
+	%service crond stop
 	/sbin/chkconfig --del crond
 fi
 
