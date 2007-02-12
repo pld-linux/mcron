@@ -1,8 +1,8 @@
 # TODO
 # - mcron.{init,crontab} not in CVS
 Summary:	Cron daemon
-Summary(fr):	DÈmon cron
-Summary(pl):	Demon cron
+Summary(fr.UTF-8):   D√©mon cron
+Summary(pl.UTF-8):   Demon cron
 Name:		mcron
 Version:	1.0.1
 Release:	0.1
@@ -41,11 +41,11 @@ for Vixie cron. It is written in pure Guile, and allows configuration
 files to be written in scheme (as well as Vixie's original format) for
 infinite flexibility in specifying when jobs should be run.
 
-%description -l pl
+%description -l pl.UTF-8
 Pakiet GNU mcron (Mellor's cron) jest w 100% kompatybilnym
 zamiennikiem Vixie crona. Jest napisany w czystym Guile i pozwala na
-pisanie plikÛw konfiguracyjnych w scheme (a takøe w oryginalnym
-formacie Vixie) dla nieskoÒczonej elastyczno∂ci w podawaniu zadaÒ do
+pisanie plik√≥w konfiguracyjnych w scheme (a tak≈ºe w oryginalnym
+formacie Vixie) dla niesko≈Ñczonej elastyczno≈õci w podawaniu zada≈Ñ do
 uruchomienia.
 
 %prep
