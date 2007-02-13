@@ -1,8 +1,8 @@
 # TODO
 # - mcron.{init,crontab} not in CVS
 Summary:	Cron daemon
-Summary(fr.UTF-8):   Démon cron
-Summary(pl.UTF-8):   Demon cron
+Summary(fr.UTF-8):	Démon cron
+Summary(pl.UTF-8):	Demon cron
 Name:		mcron
 Version:	1.0.1
 Release:	0.1
