@@ -30,9 +30,9 @@ Provides:	crondaemon
 Provides:	crontabs
 Provides:	group(crontab)
 Obsoletes:	crontabs
-Obsoletes:	fcron
-Obsoletes:	hc-cron
-Obsoletes:	vixie-cron
+Conflicts:	fcron
+Conflicts:	hc-cron
+Conflicts:	vixie-cron
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
