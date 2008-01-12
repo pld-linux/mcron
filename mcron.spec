@@ -27,12 +27,10 @@ Requires(pre):	/usr/sbin/groupadd
 Requires:	/bin/run-parts
 Requires:	rc-scripts
 Provides:	crondaemon
-Provides:	crontabs
+Provides:	crontabs = 1.7
 Provides:	group(crontab)
+Obsoletes:	crondaemon
 Obsoletes:	crontabs
-Conflicts:	fcron
-Conflicts:	hc-cron
-Conflicts:	vixie-cron
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
