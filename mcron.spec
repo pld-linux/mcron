@@ -4,12 +4,12 @@ Summary:	Cron daemon
 Summary(fr.UTF-8):	Démon cron
 Summary(pl.UTF-8):	Demon cron
 Name:		mcron
-Version:	1.0.1
+Version:	1.0.4
 Release:	0.1
 License:	GPL
 Group:		Daemons
 Source0:	ftp://ftp.gnu.org/pub/gnu/mcron/%{name}-%{version}.tar.gz
-# Source0-md5:	975eba069a1aa2fdaef4029752d78100
+# Source0-md5:	c16cfb61ccb5f5da9addbf10b9efff44
 #Source1:	%{name}.init
 Source2:	cron.logrotate
 Source3:	cron.sysconfig
@@ -65,10 +65,10 @@ install -d $RPM_BUILD_ROOT/var/{log,spool/cron} \
 	$RPM_BUILD_ROOT/etc/{rc.d/init.d,logrotate.d,sysconfig} \
 	$RPM_BUILD_ROOT%{_sysconfdir}/{cron,cron.{d,hourly,daily,weekly,monthly}}
 
-install %{SOURCE1} $RPM_BUILD_ROOT/etc/rc.d/init.d/crond
+#install %{SOURCE1} $RPM_BUILD_ROOT/etc/rc.d/init.d/crond
 install %{SOURCE2} $RPM_BUILD_ROOT/etc/logrotate.d/cron
 install %{SOURCE3} $RPM_BUILD_ROOT/etc/sysconfig/cron
-install %{SOURCE4} $RPM_BUILD_ROOT/etc/cron.d/crontab
+#install %{SOURCE4} $RPM_BUILD_ROOT/etc/cron.d/crontab
 
 install mcron $RPM_BUILD_ROOT%{_sbindir}
 ln -s mcron $RPM_BUILD_ROOT%{_sbindir}/crond
