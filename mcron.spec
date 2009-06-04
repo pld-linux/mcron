@@ -8,7 +8,7 @@ Version:	1.0.4
 Release:	0.1
 License:	GPL
 Group:		Daemons
-Source0:	ftp://ftp.gnu.org/pub/gnu/mcron/%{name}-%{version}.tar.gz
+Source0:	http://ftp.gnu.org/gnu/mcron/%{name}-%{version}.tar.gz
 # Source0-md5:	c16cfb61ccb5f5da9addbf10b9efff44
 #Source1:	%{name}.init
 Source2:	cron.logrotate
@@ -117,7 +117,12 @@ fi
 %files
 %defattr(644,root,root,755)
 %doc AUTHORS NEWS ChangeLog README TODO
-%attr(755,root,root) %{_bindir}
-%attr(755,root,root) %{_sbindir}/*
-%attr(1730,root,root) /var/spool/cron
-%{_infodir}/m*
+%attr(640,root,crontab) %config(noreplace,missingok) %verify(not md5 mtime size) %{_sysconfdir}/cron/cron.allow
+%attr(640,root,crontab) %config(noreplace,missingok) %verify(not md5 mtime size) %{_sysconfdir}/cron/cron.deny
+%attr(640,root,root) %config(noreplace) %verify(not md5 mtime size) /etc/logrotate.d/cron
+%attr(640,root,root) %config(noreplace) %verify(not md5 mtime size) /etc/sysconfig/cron
+%attr(755,root,root) %{_bindir}/crontab
+%attr(755,root,root) %{_sbindir}/crond
+%attr(755,root,root) %{_sbindir}/mcron
+%dir %attr(1730,root,root) /var/spool/cron
+%{_infodir}/mcron.info.gz
