@@ -4,12 +4,12 @@ Summary:	Cron daemon
 Summary(fr.UTF-8):	Démon cron
 Summary(pl.UTF-8):	Demon cron
 Name:		mcron
-Version:	1.0.4
-Release:	0.1
+Version:	1.0.6
+Release:	1
 License:	GPL
 Group:		Daemons
 Source0:	http://ftp.gnu.org/gnu/mcron/%{name}-%{version}.tar.gz
-# Source0-md5:	c16cfb61ccb5f5da9addbf10b9efff44
+# Source0-md5:	c228b01d14673e8d181376b9549eb1f8
 #Source1:	%{name}.init
 Source2:	cron.logrotate
 Source3:	cron.sysconfig
