@@ -15,6 +15,8 @@ Source2:	cron.logrotate
 Source3:	cron.sysconfig
 #Source4:	%{name}.crontab
 URL:		http://www.gnu.org/software/mcron/
+BuildRequires:	autoconf
+BuildRequires:	automake
 BuildRequires:	guile-devel
 BuildRequires:	rpmbuild(macros) >= 1.268
 BuildRequires:	sed >= 4.0
@@ -51,6 +53,9 @@ uruchomienia.
 sed -i -e 's#/etc/crontab#/etc/cron.d/system#g' *
 
 %build
+%{__aclocal}
+%{__autoconf}
+%{__automake}
 %configure \
 	--with-spool-dir=/var/spool/cron \
 	--with-socket-file=/var/run/mcron.sock \
