@@ -130,4 +130,4 @@ fi
 %attr(755,root,root) %{_sbindir}/crond
 %attr(755,root,root) %{_sbindir}/mcron
 %dir %attr(1730,root,root) /var/spool/cron
-%{_infodir}/mcron.info.gz
+%{_infodir}/mcron.info*
