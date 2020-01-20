@@ -1,0 +1,15 @@
+--- mcron-1.1.3/doc/mcron.texi.orig	2020-01-20 18:36:08.587077007 +0100
++++ mcron-1.1.3/doc/mcron.texi	2020-01-20 19:01:48.668733670 +0100
+@@ -27,10 +27,10 @@
+ 
+ @ifinfo
+ 
+-@dircategory Individual utilities
++@dircategory Miscellaneous:
+ 
+ @direntry
+-* mcron: (mcron).       Run jobs at scheduled times.
++* mcron: (mcron).			Run jobs at scheduled times
+ @end direntry
+ 
+ @end ifinfo

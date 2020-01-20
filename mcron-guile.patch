@@ -1,0 +1,11 @@
+--- mcron-1.1.3/configure.ac.orig	2019-11-17 12:20:30.000000000 +0100
++++ mcron-1.1.3/configure.ac	2020-01-20 15:47:35.541864072 +0100
+@@ -35,7 +35,7 @@
+ AM_PROG_AR
+ 
+ # Check for Guile 2.x. development files
+-GUILE_PKG([2.0])
++GUILE_PKG([2.2 2.0])
+ 
+ # Set Guile flags without using GUILE_FLAGS which is requiring the unused
+ # 'config.rpath' script.
