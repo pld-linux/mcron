@@ -5,18 +5,17 @@ Summary:	Cron daemon
 Summary(fr.UTF-8):	Démon cron
 Summary(pl.UTF-8):	Demon cron
 Name:		mcron
-Version:	1.1.3
+Version:	1.2.0
 Release:	0.1
 License:	GPL v3+
 Group:		Daemons
 Source0:	https://ftp.gnu.org/gnu/mcron/%{name}-%{version}.tar.gz
-# Source0-md5:	53d138f8569bc8c6269791aeb5fa3789
+# Source0-md5:	3617a5bf67e30dc009c62f6e831e7764
 #Source1:	%{name}.init
 Source2:	cron.logrotate
 Source3:	cron.sysconfig
 #Source4:	%{name}.crontab
-Patch0:		%{name}-guile.patch
-Patch1:		%{name}-info.patch
+Patch0:		%{name}-info.patch
 URL:		http://www.gnu.org/software/mcron/
 BuildRequires:	autoconf >= 2.61
 BuildRequires:	automake >= 1:1.11
@@ -56,7 +55,6 @@ do uruchomienia.
 %prep
 %setup -q
 %patch0 -p1
-%patch1 -p1
 
 # XXX: this is wrong, /etc/cron.d _directory_ should be processed instead of single file!
 %{__sed} -i -e 's#/etc/crontab#/etc/cron.d/crontab#g' \
