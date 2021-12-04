@@ -5,21 +5,22 @@ Summary:	Cron daemon
 Summary(fr.UTF-8):	Démon cron
 Summary(pl.UTF-8):	Demon cron
 Name:		mcron
-Version:	1.2.0
+Version:	1.2.1
 Release:	0.1
 License:	GPL v3+
 Group:		Daemons
 Source0:	https://ftp.gnu.org/gnu/mcron/%{name}-%{version}.tar.gz
-# Source0-md5:	3617a5bf67e30dc009c62f6e831e7764
+# Source0-md5:	6fa2659cb026502e6be800a29214662b
 #Source1:	%{name}.init
 Source2:	cron.logrotate
 Source3:	cron.sysconfig
 #Source4:	%{name}.crontab
 Patch0:		%{name}-info.patch
 URL:		http://www.gnu.org/software/mcron/
-BuildRequires:	autoconf >= 2.61
+BuildRequires:	autoconf >= 2.69
 BuildRequires:	automake >= 1:1.11
 BuildRequires:	guile-devel >= 5:2.0
+BuildRequires:	guile-devel < 5:3.2
 BuildRequires:	help2man
 BuildRequires:	pkgconfig
 BuildRequires:	rpmbuild(macros) >= 1.268
