@@ -5,12 +5,12 @@ Summary:	Cron daemon
 Summary(fr.UTF-8):	Démon cron
 Summary(pl.UTF-8):	Demon cron
 Name:		mcron
-Version:	1.2.1
+Version:	1.2.3
 Release:	0.1
 License:	GPL v3+
 Group:		Daemons
 Source0:	https://ftp.gnu.org/gnu/mcron/%{name}-%{version}.tar.gz
-# Source0-md5:	6fa2659cb026502e6be800a29214662b
+# Source0-md5:	60092c121ea2e3a32765423e772ba789
 #Source1:	%{name}.init
 Source2:	cron.logrotate
 Source3:	cron.sysconfig
@@ -19,7 +19,7 @@ Patch0:		%{name}-info.patch
 URL:		http://www.gnu.org/software/mcron/
 BuildRequires:	autoconf >= 2.69
 BuildRequires:	automake >= 1:1.11
-BuildRequires:	guile-devel >= 5:2.0
+BuildRequires:	guile-devel >= 5:3.0
 BuildRequires:	guile-devel < 5:3.2
 BuildRequires:	help2man
 BuildRequires:	pkgconfig
@@ -140,8 +140,10 @@ fi
 %attr(755,root,root) %{_bindir}/crontab
 %attr(755,root,root) %{_bindir}/mcron
 %attr(755,root,root) %{_sbindir}/cron
-%{_libdir}/guile/2.*/site-ccache/mcron
-%{_datadir}/guile/site/2.*/mcron
+%attr(4755,root,root) %{_sbindir}/crontab-access
+%attr(755,root,root) %{_libexecdir}/crontab-access-real
+%{_libdir}/guile/*.*/site-ccache/mcron
+%{_datadir}/guile/site/*.*/mcron
 %dir %attr(1730,root,root) /var/spool/cron
 %{_mandir}/man1/crontab.1*
 %{_mandir}/man1/mcron.1*
