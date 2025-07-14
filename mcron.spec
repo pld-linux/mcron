@@ -55,7 +55,7 @@ do uruchomienia.
 
 %prep
 %setup -q
-%patch0 -p1
+%patch -P0 -p1
 
 # XXX: this is wrong, /etc/cron.d _directory_ should be processed instead of single file!
 %{__sed} -i -e 's#/etc/crontab#/etc/cron.d/crontab#g' \
